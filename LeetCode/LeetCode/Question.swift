@@ -269,3 +269,28 @@ class QuestionSix {
         return String(result);
     }
 }
+
+/*
+ 整数反转
+ 解题思路:首先判断正负，然后把符号以外的数值转化为字符串，然后再将字符串反转，最后再将字符串转化为整数
+ */
+
+class QuestionSeven {
+    func reverse(_ x: Int) -> Int {
+        if x == 0 {
+            return 0;
+        }
+        
+        let isNegative = x > 0 ? false : true;
+        let temp = isNegative ? -x : x;
+        
+        let string = String(String(temp).reversed());
+        let result = isNegative ? -Int(string)! : Int(string)!;
+        if result > Int32.max || result < Int32.min {
+            return 0;
+        }
+        
+        return result;
+        
+    }
+}
