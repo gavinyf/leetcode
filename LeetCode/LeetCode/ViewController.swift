@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
         
         
-        let result = QuestionSix().convert("abcd", 3);
+        let result = QuestionNine().isPalindromeTwo(121);
         
         
         

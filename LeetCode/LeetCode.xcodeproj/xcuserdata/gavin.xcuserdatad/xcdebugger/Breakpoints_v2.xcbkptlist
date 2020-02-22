@@ -7,17 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "09FFE673-32A9-48E4-A799-900C00609F5E"
+            uuid = "0B849B77-6E81-4AE1-BB44-84FD118042CF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeetCode/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5BF77EEC-C80C-410B-876D-690EA6A94AA1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeetCode/Question.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
+            landmarkName = "isPalindromeTwo(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5BF77EEC-C80C-410B-876D-690EA6A94AA1 - d042c60693920380"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LeetCode.QuestionNine.isPalindromeTwo(Swift.Int) -&gt; Swift.Bool"
+                  moduleName = "LeetCode"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavin/Desktop/leetcode/leetcode/LeetCode/LeetCode/Question.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "391"
+                  endingLineNumber = "391"
+                  offsetFromSymbolStart = "416">
+               </Location>
+               <Location
+                  uuid = "5BF77EEC-C80C-410B-876D-690EA6A94AA1 - d042c60693920380"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LeetCode.QuestionNine.isPalindromeTwo(Swift.Int) -&gt; Swift.Bool"
+                  moduleName = "LeetCode"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gavin/Desktop/leetcode/leetcode/LeetCode/LeetCode/Question.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "391"
+                  endingLineNumber = "391"
+                  offsetFromSymbolStart = "477">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

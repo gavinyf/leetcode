@@ -294,3 +294,102 @@ class QuestionSeven {
         
     }
 }
+/*
+ 字符串转化整数
+ 解题思路：首先去除掉字符串首部空格字符，然后判断字符串是否第一个字符是否含有-字符，若含有则先去除，若不含有，然后遍历字符串的字符，判断每个字符是否为字母或者空格，如不是，就用字符串拼接，若是，则停止拼接，若为空字符串，则返回0，转化为数字，然后判断正负.
+ 
+ */
+
+class QuestionEight {
+    func myAtoi(_ str: String) -> Int {
+        
+        var result = 0;
+        
+        var string = str.trimmingCharacters(in: .whitespaces);
+        var isNegative = false;
+        
+        if string.hasPrefix("-") || string.hasPrefix("+") {
+            let c = string.remove(at: string.startIndex);
+            isNegative = c == "-";
+        }
+        
+        
+        
+        
+        var values = "";
+        let charcters = [Character](string);
+        let numbers:[Character] = ["0","1","2","3","4","5","6","7","8","9"];
+        
+        for c in charcters {
+            if numbers.contains(c){
+                values.append(c);
+            }else{
+                break;
+            }
+        }
+        if values.isEmpty {
+            return 0;
+        }
+        
+        if Int(values) == nil {
+            return isNegative ? Int(Int32.min) : Int(Int32.max);
+        }
+        result = Int(values)!
+        result = isNegative ? -result : result;
+        if result > Int32.max  {
+            return Int(Int32.max);
+        }
+        if  result < Int32.min {
+            return Int(Int32.min);
+        }
+        return result;
+        
+        
+    }
+}
+
+/*
+ 回文数:
+ 解法1：先去除特殊情况，然后把数字转化为字符串，然后再把字符串反转，比较就行了
+ 解法2：先去除特殊情况，可以通过除法来获取整数的回文数，最后来判断是否相等
+ */
+class QuestionNine {
+    func isPalindrome(_ x: Int) -> Bool {
+        
+        if x == 0 {
+            return true;
+        }
+        
+        if x < 0 || x % 10 == 0{
+            return false;
+        }
+        
+        
+        let origin = String(x);
+        let reve = String(origin.reversed());
+        
+        return origin == reve;
+
+    }
+    
+    func isPalindromeTwo(_ x: Int) -> Bool {
+        if x == 0 {
+            return true;
+        }
+        if x < 0 || x % 10 == 0 {
+            return false;
+        }
+        
+        var revert = 0;
+        var number = x;
+        
+        while number > revert {
+            revert = revert * 10 + number % 10;
+            number = number / 10;
+        }
+        //若x的长度为偶数，则直接判断,若为奇数，则可以通过revert/10去掉中间的数
+        return number == revert || number == revert/10;
+        
+    }
+}
+
