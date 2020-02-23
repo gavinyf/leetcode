@@ -494,3 +494,41 @@ class QuestionTwelve {
         return results;
     }
 }
+
+/*
+ 罗马数字转整数
+ 解题思路：首先建立一个字典来表示罗马字符和数字之间的一一对应的关系，然后再遍历字符串，遍历的过程中同时对特殊情况进行区别对待
+ */
+
+class QuestionThirteen {
+    func romanToInt(_ s: String) -> Int {
+        var result = 0;
+        let dict:[Character:Int] = ["I":1,"V":5,"X":10,"L":50,"C":100,"D":500,"M":1000];
+        let chars = [Character](s);
+        
+        var index = 0;
+        while index < chars.count {
+            if !dict.keys.contains(chars[index]) {
+                continue;
+            }
+            if index == chars.count - 1 {
+                result = result + (dict[chars[index]] ?? 0);
+                index += 1;
+            }else{
+                let current = (dict[chars[index]] ?? 0);
+                let next = (dict[chars[index+1]] ?? 0);
+                //判断当前位置罗马字符的值是不是比下一位大
+                if current >= next {
+                    result += current;
+                    index+=1;
+                }else{
+                    result = result + next - current;
+                    index+=2;
+                }
+                
+            }
+        }
+        
+        return result;
+    }
+}
