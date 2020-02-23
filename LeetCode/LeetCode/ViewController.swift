@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
         
         
-        let result = QuestionNine().isPalindromeTwo(121);
+        let result = QuestionTen().isMatch("aa", "a*");
         
         
         

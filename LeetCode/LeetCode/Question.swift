@@ -393,3 +393,50 @@ class QuestionNine {
     }
 }
 
+/*
+ 正则表达式匹配：
+ 解题思路:通过递归的方式一步步的实现
+ */
+
+class QuestionTen {
+    func isMatch(_ s: String, _ p: String) -> Bool {
+        
+        if p.isEmpty  {
+            return s.isEmpty;
+        }
+        
+        let stringS = s;
+        let stringP = p;
+        
+       //满足有"."的情况，
+        let firstMatch = !stringS.isEmpty && (stringS.first! == stringP.first! || stringP.first! == ".");
+        
+        //匹配公式有“*”，
+        if stringP.count >= 2 && [Character](stringP)[1] == "*" {
+            //根据递归的原则，要么匹配零次:跳过匹配公式前两位
+            let secondIndexP = stringP.index(stringP.startIndex, offsetBy: 2);
+            if isMatch(stringS, String(stringP.suffix(from: secondIndexP))) {
+                return true;
+            }else{
+                //要么匹配一次
+                if !firstMatch {
+                    return false;
+                }
+                let indexS = stringS.index(stringS.startIndex, offsetBy: 1);
+                return isMatch(String(stringS.suffix(from: indexS)), stringP);
+            }
+            
+        }else{
+            if !firstMatch {
+                return false;
+            }
+            let indexS = stringS.index(stringS.startIndex, offsetBy: 1);
+            let indexP = stringP.index(stringP.startIndex, offsetBy: 1);
+            return isMatch(String(stringS.suffix(from: indexS)), String(stringP.suffix(from: indexP)));
+        }
+        
+        
+    }
+    
+}
+
