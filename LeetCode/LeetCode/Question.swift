@@ -465,3 +465,32 @@ class QuestionEleven {
         return maxContainer;
     }
 }
+/*
+ 整数转罗马数字：
+ 解题思路:首先我们根据题目知道罗马数字跟阿拉伯数字不是一一对应的关系，但是我们得考虑这些特殊的关系，所以我们将特殊情况写下来，和罗马数组进行一一对应，然后再循环，以从大到小的顺序来遍历nums
+
+*/
+
+class QuestionTwelve {
+    func intToRoman(_ num: Int) -> String {
+
+        let nums = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+        let romans = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+        var index = 0;
+        var results = "";
+        var numCopy = num;
+        
+        
+        while index < nums.count{
+            
+            while numCopy > nums[index] {
+                results.append(romans[index]);
+                numCopy -= nums[index];
+            }
+            index+=1;
+            
+        }
+        
+        return results;
+    }
+}
