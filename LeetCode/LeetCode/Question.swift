@@ -440,3 +440,28 @@ class QuestionTen {
     
 }
 
+/*
+  盛最多水的容器:
+ 解题思路：首先从数组第一个值开始往前，数组最后一个值往后开始遍历，一开始的底部是最大的，这个时候就要寻找最高的两侧，然后首部和尾部各企图往中间前进的时候，就要判断当前下标对应的值，那个低就前进那个。
+ */
+class QuestionEleven {
+    func maxArea(_ height: [Int]) -> Int {
+        if height.count <= 1 {
+            return 0;
+        }
+
+        var left = 0;
+        var right = height.count - 1;
+        var maxContainer = 0;
+        
+        while left < right {
+            maxContainer = max(maxContainer, (right - left) * (height[left] > height[right] ? height[right] : height[left]));
+            if height[left] > height[right] {
+                right-=1;
+            }else{
+                left+=1;
+            }
+        }
+        return maxContainer;
+    }
+}

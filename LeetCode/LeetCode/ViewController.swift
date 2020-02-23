@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
         
         
-        let result = QuestionTen().isMatch("aa", "a*");
+        let result = QuestionEleven().maxArea([1,8,6,2,5,4,8,3,7]);
         
         
         
