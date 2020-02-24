@@ -532,32 +532,3 @@ class QuestionThirteen {
         return result;
     }
 }
-
-/*
- 最长公共前缀
- 解题思路:首先可以先将数组中的第一个字符串作为前缀，然后遍历剩余的字符串，在遍历过程中如果发现不包含，那就自动移除最后一位，直到包含为止。
- */
-class QuestionFourteen {
-    func longestCommonPrefix(_ strs: [String]) -> String {
-        
-        if strs.count == 0 {
-            return "";
-        }
-        if strs.count == 1 {
-            return strs.first!;
-        }
-        var strsCopy = strs;
-        var prefix = strsCopy.first!;
-        strsCopy.removeFirst();
-        for str in strs {
-            while !str.hasPrefix(prefix) {
-                prefix.removeLast();
-                if prefix.isEmpty {
-                    return "";
-                }
-            }
-        }
-        return prefix;
-
-    }
-}
