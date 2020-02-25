@@ -532,3 +532,119 @@ class QuestionThirteen {
         return result;
     }
 }
+/*
+ 最长公共前缀
+ 解题思路:首先排除特殊情况，然后再选取第一个字符串为共有的前缀，然后遍历其他字符，在遍历过程中如果发现有字符串的前缀不是那个之前共有的前缀，就将共有的前缀最后一位移除，最后得到结果
+ */
+
+class QuestionFourteen {
+    func longestCommonPrefix(_ strs: [String]) -> String {
+       if strs.count == 0 {
+            return "";
+        }
+        if strs.count == 1 {
+            return strs.first!;
+        }
+        var strsCopy = strs;
+        var prefix = strsCopy.first!;
+        strsCopy.removeFirst();
+        for str in strs {
+            while !str.hasPrefix(prefix) {
+                prefix.removeLast();
+                if prefix.isEmpty {
+                    return "";
+                }
+            }
+        }
+        return prefix;
+
+    }
+}
+
+/*
+ 三数之和:
+ 解题思路：为了能够更好的不重复的s获取数组中的三数之和，我们可以先排序：然后从数组中第二个数字C开始遍历，设置左右所谓的指针left,right，left一开始是第一个数，right一开始是最后一个数，然后开始判断大小，如果和为零就把这三个数放到数组中，然后left和right各向中间靠近，若大于0，说明right的数值大了，就向中间偏移一位，反之小于0，left就往右偏移一位，
+ */
+class QuestionFifteen {
+    func threeSum(_ nums: [Int]) -> [[Int]] {
+        
+        if nums.count < 3 {
+            return [[Int]]();
+        }
+        let sortedNums = nums.sorted(by: <);
+        if sortedNums.first! > 0 || sortedNums.last! < 0{
+            return [[Int]]();
+        }
+        var result:Set<[Int]> = Set<[Int]>();
+        
+        
+        for i in 1..<sortedNums.count - 1 {
+            var left = 0;
+            var right = sortedNums.count - 1;
+            while left < right && left < i && right > i {
+                let leftValue = sortedNums[left];
+                let currentValue = sortedNums[i];
+                let rightValue = sortedNums[right];
+                
+                if leftValue + currentValue + rightValue == 0 {
+                    result.insert([leftValue,currentValue,rightValue]);
+                    left += 1;
+                    right -= 1;
+                }else if leftValue + currentValue + rightValue > 0{
+                    right -= 1;
+                    
+                }else if leftValue + currentValue + rightValue < 0{
+                    left += 1;
+                }
+            }
+        }
+        
+        return Array(result);
+
+    }
+}
+
+/*
+ 最接近的三数之和
+ 解题思路：与上题方式一样操作，只是当求出结果sum时判断条件，若比target小，则取target-sum的最大值。，若比target大，则取target-sum的最小值
+ */
+
+class QuestionSixteen{
+    func threeSumClosest(_ nums: [Int], _ target: Int) -> Int {
+        if nums.count < 3 {
+            return 0;
+        }
+        
+        let sortedNums = nums.sorted();
+        
+        //先设置个默认值
+        var result = sortedNums[0] + sortedNums[1] + sortedNums[2] - target;
+        
+        for i in 1..<sortedNums.count - 1 {
+            var left = 0;
+            var right = sortedNums.count - 1;
+            
+            while left < right && left < i && right > i {
+                let leftValue = sortedNums[left];
+                let currentValue = sortedNums[i];
+                let rightValue = sortedNums[right];
+                
+                let sum = leftValue + currentValue + rightValue;
+                if sum > target {
+                    right-=1;
+                }else if sum < target{
+                    left+=1;
+                }else{
+                    return target;
+                }
+                if abs(sum-target) < abs(result) {
+                    result = sum - target;
+                }
+               
+            }
+        }
+        return result + target;
+
+    }
+    
+}
