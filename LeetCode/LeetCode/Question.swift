@@ -698,3 +698,49 @@ class QuestionSeventeen {
     }
     
 }
+
+
+/*
+ 四数之和:
+ 解题思路:可以参考三数之和，只是多了一层循环。
+ */
+class QuestionEighteen {
+    func fourSum(_ nums: [Int], _ target: Int) -> [[Int]] {
+        if nums.count < 4 {
+            return [];
+        }
+        
+        var result = Set<[Int]>();
+        
+        var numsSorts = nums.sorted(by: <);
+        for j in 0..<numsSorts.count {
+            //先移除遍历的值，将之变成为求三数之和
+            let num = numsSorts.remove(at: j);
+            let newTarget = target - num;
+            for i in 1..<numsSorts.count {
+                var left = 0;
+                var right = numsSorts.count - 1;
+                while left < right && left < i && right > i {
+                    let currentValue = numsSorts[i];
+                    let leftValue = numsSorts[left];
+                    let rightValue = numsSorts[right];
+                    let sum = leftValue + rightValue + currentValue;
+                    
+                    if sum == newTarget {
+                        result.insert([num,leftValue,currentValue,rightValue].sorted());
+                        right -= 1;
+                        left += 1;
+                    }else if sum > newTarget{
+                        right -= 1;
+                    }else{
+                        left += 1;
+                    }
+                }
+            }
+            //结束之后再在相应的位置插入删除的值。
+            numsSorts.insert(num, at: j);
+        }
+        return Array(result);
+
+    }
+}

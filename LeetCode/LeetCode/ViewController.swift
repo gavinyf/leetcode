@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
         
         
-        let result = QuestionSixteen().threeSumClosest([0,2,1,-3], 1);
+        let result = QuestionEighteen().fourSum([1,0,-1,0,-2,2], 0);
         
         
     }
