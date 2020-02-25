@@ -744,3 +744,35 @@ class QuestionEighteen {
 
     }
 }
+
+
+/*
+ 删除链表的倒数第N个节点:
+ 解题思路:可以用双指针的做法，只是两个指针之间相距n,
+ */
+class QuestionNineteen {
+        
+    func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
+        
+        let temp = ListNode(0);
+        temp.next = head;
+        var first:ListNode? = temp;
+        var second:ListNode? = temp;
+        var distance = n;
+        
+        while distance > -1 {
+            first = first?.next;
+            distance -= 1;
+        }
+        
+        while first != nil {
+            first = first?.next;
+            second = second?.next;
+        }
+        second?.next = second?.next?.next;
+        
+        return temp.next;
+
+    }
+}
+
