@@ -776,3 +776,34 @@ class QuestionNineteen {
     }
 }
 
+/*
+ 有效的括号:
+ 解题思路：总共有三种类型的括号{},[]，(),根据题目意思可知，若要有效，可以逐渐移除这三个字符串中的一个，最后移除结束后查看字符串是否为空，
+ */
+class QuestionTwenty {
+    func isValid(_ s: String) -> Bool {
+        
+       var stack = [Character]()
+        
+        for char in s {
+            if char == "(" || char == "[" || char == "{" {
+                stack.append(char)
+            } else if char == ")" {
+                guard stack.count != 0 && stack.removeLast() == "(" else {
+                    return false
+                }
+            } else if char == "]" {
+                guard stack.count != 0 && stack.removeLast() == "[" else {
+                    return false
+                }
+            } else if char == "}" {
+                guard stack.count != 0 && stack.removeLast() == "{" else {
+                    return false
+                }
+            }
+        }
+        
+        return stack.isEmpty
+    }
+}
+
