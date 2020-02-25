@@ -648,3 +648,53 @@ class QuestionSixteen{
     }
     
 }
+
+/*
+ 电话号码的字母组合:
+ 解题思路:首先限制输入内容，针对这个问题我们可以才有递归的方式，先制作一个对应的数组，下标和要表达的数字一一对应，然后再取出digits每一个字符i并转化为数字作为下标来寻找对应的字符串，，然后对这个字符串遍历进行更深一层次的操作。
+ */
+
+class QuestionSeventeen {
+    func letterCombinations(_ digits: String) -> [String] {
+        if digits.isEmpty {
+            return [];
+        }
+        
+        let dict = ["","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"];
+        
+        var combinations = [String]();
+        var combination = ""
+        backtrace(&combinations, combination: &combination, digits: digits, dict: dict, index: 0);
+        
+        return combinations;
+
+    }
+    
+    func backtrace(_ combinations: inout [String],combination: inout String, digits:String,dict:[String],index:Int) {
+        //当递归到最后一位的时候将结果放在数组中
+        if combination.count == digits.count {
+            combinations.append(combination);
+            return;
+        }
+        
+        guard index < digits.count && index >= 0 else {
+            return;
+        }
+        
+        let currentChart = digits[digits.index(digits.startIndex, offsetBy: index)];
+        
+        guard let currentDigit = Int(String(currentChart)), currentDigit >= 0, currentDigit < dict.count else {
+            return;
+        }
+        
+        //取出digit指定位置的字符串并进行深层次的遍历
+        let currentString = dict[currentDigit];
+        for c in currentString {
+            combination.append(String(c));
+            backtrace(&combinations, combination: &combination, digits: digits, dict: dict, index: index+1);
+            combination.removeLast();
+        }
+                
+    }
+    
+}
