@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
         
         
-        let result = QuestionEighteen().fourSum([1,0,-1,0,-2,2], 0);
+        let result = QuestionTwentyTwo().generateParenthesis(2);
         
         
     }

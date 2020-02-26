@@ -843,3 +843,45 @@ class QuestionTwentyOne {
     }
 }
 
+/*
+ 括号生成
+ 解题思路：首先这题可以用递归的方式来解决，n对的()进行组合，而这种组合是有一定条件的，就是(）成对，
+ */
+
+class QuestionTwentyTwo {
+    func generateParenthesis(_ n: Int) -> [String] {
+        
+        var result = [String]();
+        var currentString = "";
+        combine(n, right: n, currentString: currentString, combinations: &result);
+        return result;
+    }
+    
+    /*
+     left：(括号剩余需要的个数，
+     right:）括号剩余的个数，
+     n:总个数
+     currentString:当前已排列的字符串
+     combinations:结果
+     */
+    func combine(_ left:Int,right:Int,currentString: String,combinations: inout [String]) {
+        
+        //当左右括号都没有剩余的时候，组合就完成了，直接放入数组
+        if left == 0 && right == 0 {
+            combinations.append(currentString);
+        }
+        //当剩余的左括号大于右括号的时候就不需要再组合下去了。也就是说只有先用了左括号才可以用右括号
+        if left > right {
+            return;
+        }
+        
+        if left > 0 {
+            
+            combine(left - 1, right: right, currentString: currentString+"(", combinations: &combinations);
+        }
+        
+        if right > 0 {
+            combine(left, right: right - 1, currentString: currentString+")", combinations: &combinations);
+        }
+    }
+}
