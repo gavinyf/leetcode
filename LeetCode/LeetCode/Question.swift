@@ -807,3 +807,39 @@ class QuestionTwenty {
     }
 }
 
+/*
+ 合并两个有序链表:
+ 解题思路:使用归并排序的方法
+ */
+class QuestionTwentyOne {
+    
+    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+
+        
+        let head = ListNode(0);
+        var current:ListNode? = head;
+        var point1 = l1;
+        var point2 = l2;
+                
+        while point1 != nil && point2 != nil {
+            if point1!.val < point2!.val {
+                current?.next = point1;
+                current = current?.next;
+                point1 = point1?.next;
+            }else{
+                current?.next = point2;
+                current = current?.next;
+                point2 = point2?.next;
+            }
+        }
+        
+        if point1 == nil {
+            current?.next = point2;
+        }else{
+            current?.next = point1;
+        }
+        
+        return head.next;
+    }
+}
+
