@@ -884,4 +884,57 @@ class QuestionTwentyTwo {
             combine(left, right: right - 1, currentString: currentString+")", combinations: &combinations);
         }
     }
+    
+    func generateParenthesisTwo(_ n:Int) -> [String] {
+        var dp = [[String]]();
+        let dp0 = [""];
+        dp.append(dp0);
+        for i in 0..<n {
+            var current = [String]();
+            
+            for j in 0..<i {
+                let dpj = dp[j];
+                let dpi = dp[n - j - 1];
+                for string in dpj {
+                    for string2 in dpi {
+                        current.append("(" + string + ")" + string2);
+                    }
+                }
+            }
+            dp.append(current);
+        }
+        return dp[n];
+    }
+}
+
+/*
+ 合并K个排序链表
+ 解题思路:将链表中的值一一取出放到数组中，然后对数组排序，最后将排序好的数组一一链接起来。
+ */
+
+class QuestionTwenteenThree {
+    func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
+        
+        let head = ListNode(0);
+        var point:ListNode? = head;
+        var array = [Int]();
+        
+        for node in lists {
+            var nodeCopy = node
+            
+            while nodeCopy != nil {
+                array.append(nodeCopy!.val);
+                nodeCopy = nodeCopy?.next;
+            }
+        }
+        
+        array = array.sorted(by: <);
+        for value in array {
+            point?.next = ListNode(value);
+            point = point?.next;
+            
+        }
+        return head.next;
+    }
+    
 }
