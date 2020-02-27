@@ -18,7 +18,11 @@ class ViewController: UIViewController {
 
         
         
-        let result = QuestionTwentyTwo().generateParenthesis(2);
+        var head = ListNode(1);
+        var second = ListNode(2);
+        head.next = second;
+        
+        let result = QuestionTwentyFour().swapPairs(head);
         
         
     }

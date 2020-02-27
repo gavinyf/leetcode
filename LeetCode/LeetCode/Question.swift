@@ -912,7 +912,7 @@ class QuestionTwentyTwo {
  解题思路:将链表中的值一一取出放到数组中，然后对数组排序，最后将排序好的数组一一链接起来。
  */
 
-class QuestionTwenteenThree {
+class QuestionTwentyThree {
     func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
         
         let head = ListNode(0);
@@ -937,4 +937,40 @@ class QuestionTwenteenThree {
         return head.next;
     }
     
+}
+
+/*
+ 两两交换链表中的节点:
+ 解题思路：可以使用双指针的做法，每次平移2位。
+ 
+ */
+
+class QuestionTwentyFour {
+    func swapPairs(_ head: ListNode?) -> ListNode? {
+        if head == nil {
+            return nil;
+        }
+        
+        if head?.next == nil {
+            return head;
+        }
+        
+        let pre = ListNode(0);
+        pre.next = head;
+        var first:ListNode? = pre;
+        var second = head;
+        
+        while first?.next != nil && second?.next != nil {
+            let temp2 = second?.next?.next;
+            
+            first?.next = second?.next;
+            second?.next = temp2;
+            first?.next?.next = second;
+            first = second;
+            second = second?.next;
+                        
+        }
+        return pre.next;
+
+    }
 }
