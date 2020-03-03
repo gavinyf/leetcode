@@ -974,3 +974,120 @@ class QuestionTwentyFour {
 
     }
 }
+
+/*
+ K 个一组翻转链表
+ 解题思路：
+ 假设单链表现在是这样的A->B->C->D->E;
+ 当k = 4的时候，我们需要把上面的链表反转成D->C>B->A->E;
+ 我们可以j进行三次指向操作
+ 第一次操作的结果，B->A->C->D;
+ 第二次结果:C->B->A->D;
+ 第三次结果就是：D->C->B->A;
+ */
+
+class QuestionTwentyFive {
+    func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
+        
+        let dump = ListNode(0);
+        dump.next = head;
+        var first = head;
+        
+        
+        var length = 0;
+        while first != nil {
+            first = first?.next;
+            length += 1;
+        }
+        dump.next = head;
+        var pre:ListNode? = dump;
+        var current = head;
+        var next = head?.next;
+        
+        
+        
+        
+        for _ in 0..<length/k {
+            for _ in 0..<k-1 {
+                next = current?.next;
+                current?.next = next?.next;
+                next?.next = pre?.next;
+                pre?.next = next;
+            }
+            pre = current;
+            current = pre?.next
+            
+        }
+        return dump.next;
+    }
+}
+
+
+/*
+ 删除排序数组中的重复项
+ */
+class QuestionTwentySix {
+    func removeDuplicates(_ nums: inout [Int]) -> Int {
+        
+        let set = Set(nums);
+        nums = Array(set).sorted();
+        return set.count;
+    }
+}
+
+
+/*
+  移除元素
+ */
+class QuestionTwentyseven {
+    func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
+        
+       nums = nums.filter { (num) -> Bool in
+            return num != val;
+        };
+        return nums.count;
+
+    }
+}
+
+/*
+ 实现 strStr()
+ */
+class QuestionTwentyeight {
+    func strStr(_ haystack: String, _ needle: String) -> Int {
+        
+        let hChars = [Character](haystack);
+        let nChars = [Character](needle);
+        let hLength = hChars.count;
+        let nLength = nChars.count;
+        guard hLength > nLength else {
+            return -1;
+        }
+        
+        guard hLength != 0 else {
+            return 0;
+        }
+        
+        guard nLength != 0 else {
+            return 0;
+        }
+        
+        for i in 0...hLength - nLength {
+            if hChars[i] == nChars[0] {
+                for j in 0..<nLength {
+                    if hChars[i + j] != nChars[j] {
+                        break;
+                    }
+                    if j == nLength - 1 {
+                        return i;
+                    }
+                }
+                
+                
+            }
+        }
+        return -1;
+
+    }
+    
+}
