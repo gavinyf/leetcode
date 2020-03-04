@@ -1091,3 +1091,55 @@ class QuestionTwentyeight {
     }
     
 }
+
+/*
+ 两数相除
+ */
+class QuestionTwentynine {
+    func divide(_ dividend: Int, _ divisor: Int) -> Int {
+        
+        if divisor == 0 {
+            return 0;
+        }
+        
+        if divisor == 1 {
+            return dividend;
+        }
+        
+        
+        var isNavigate = false;
+        if divisor < 0 && dividend > 0 {
+            isNavigate = true;
+        }
+        
+        if divisor > 0 && dividend < 0 {
+            isNavigate = true;
+        }
+        
+        let dividends = abs(dividend);
+        let divisors = abs(divisor);
+        
+        let result = div(dividends, b: divisors);
+        
+        if result >= UInt32.max {
+            return Int(UInt32.max) - 1;
+        }
+        
+        return isNavigate ? -result : result;
+        
+    }
+    
+    func div(_ a:Int,b:Int) -> Int {
+        if a < b {
+            return 0;
+        }
+        var tb = b;
+        var result = 1;
+        while (tb + tb) <= a {
+            result += result;
+            tb += tb;
+        }
+        
+        return result + div(a - tb, b: b);
+    }
+}
