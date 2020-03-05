@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         var second = ListNode(2);
         head.next = second;
         
-        let result = QuestionTwentyFour().swapPairs(head);
+        let result = QuestionThirty().findSubstring("barfoothefoobarman", ["foo","bar"]);
         
         
     }

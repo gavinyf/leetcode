@@ -1143,3 +1143,52 @@ class QuestionTwentynine {
         return result + div(a - tb, b: b);
     }
 }
+
+class QuestionThirty {
+    func findSubstring(_ s: String, _ words: [String]) -> [Int] {
+        var result = [Int]();
+        if words.count == 0 {
+            return result;
+        }
+        let wordLength = words.first!.count;
+
+        if s.count < words.count*wordLength {
+            return result;
+        }
+        
+        
+        var dict = [String:Int]();
+        for string in words {
+            let value = dict[string];
+            dict[string] = (value ?? 0) + 1;
+        }
+        
+        for index in 0..<s.count - words.count*wordLength + 1 {
+            var dict1 = [String:Int]();
+            var num = 0;
+            while num < words.count {
+                let startIndex = s.index(s.startIndex, offsetBy: num*wordLength+index);
+                let endIndex = s.index(s.startIndex, offsetBy: (num+1)*wordLength+index);
+                let string = String(s[startIndex..<endIndex]);
+                if dict.keys.contains(string) {
+                    let value = dict1[string] ?? 0;
+                    dict1[string] = value + 1;
+                    
+                    let value1 = dict[string] ?? 0;
+                    if (value+1) > value1 {
+                        break;
+                    }
+                }else{
+                    break;
+                }
+                num += 1;
+            }
+            if num == words.count {
+                result.append(index);
+            }
+            
+        }
+        return result;
+
+    }
+}
