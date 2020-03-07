@@ -1143,9 +1143,8 @@ class QuestionTwentynine {
         return result + div(a - tb, b: b);
     }
 }
-/*
- 串联所有单词的子串
- */
+
+
 class QuestionThirty {
     func findSubstring(_ s: String, _ words: [String]) -> [Int] {
         var result = [Int]();
@@ -1195,27 +1194,49 @@ class QuestionThirty {
     }
 }
 
-class QuestionThirtOne {
+class QuestionThirtyOne {
     func nextPermutation(_ nums: inout [Int]) {
         
         if nums.count == 0 || nums.count == 1 {
             return;
         }
         
-        var max = nums.count - 1;
-        while max > 0 {
-            let right = nums[max];
-            let left = nums[max - 1];
-            if right > left {
-                nums[max] = left;
-                nums[max-1] = right;
-                break;
-            }else if left > right{
-                nums = nums.reversed();
-            }
-            max -= 1;
-            
+        if nums.count == 2 {
+            nums = nums.reversed();
+            return;
         }
+       
+        
+        var current = nums.count - 1;
+        var right = nums.count - 1;
+        var left = nums.count - 2;
+        
+        //寻找left值小于current值
+        while left >= 0 && nums[left] >= nums[current] {
+            left -= 1;
+            current -= 1;
+        }
+        
+        if left >= 0 {//当不是最后一个排列
+            //寻找right值大于left
+            while nums[left] >= nums[right] {
+                right -= 1;
+            }
+            swop(right, index2: left, nums: &nums);
+        }
+        rank(current, nums: &nums);
 
+    }
+    func swop(_ index1:Int,index2:Int,nums:inout [Int]){
+        let temp = nums[index2];
+        nums[index2] = nums[index1];
+        nums[index1] = temp;
+    }
+    
+    func rank(_ index:Int,nums:inout [Int]) {
+        let last = nums.count - 1;
+        
+        let rank = Array(nums[index...last]).sorted();
+        nums[index...last] = ArraySlice(rank);
     }
 }
