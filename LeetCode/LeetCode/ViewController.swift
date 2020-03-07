@@ -18,11 +18,9 @@ class ViewController: UIViewController {
 
         
         
-        var head = ListNode(1);
-        var second = ListNode(2);
-        head.next = second;
         
-        let result = QuestionThirty().findSubstring("barfoothefoobarman", ["foo","bar"]);
+        
+        let result = QuestionThirtytwo().longestValidParentheses("()(())");
         
         
     }
