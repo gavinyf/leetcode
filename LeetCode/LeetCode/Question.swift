@@ -1266,3 +1266,32 @@ class QuestionThirtytwo {
         return maxValue;
     }
 }
+
+
+/*
+ 搜索旋转排序数组
+ 二分法
+ */
+class QuestionThirtythree {
+    func search(_ nums: [Int], _ target: Int) -> Int {
+        
+        var left = 0;
+        var right = nums.count - 1;
+        var mid = 0;
+        
+        while (left < right){
+            mid = (left + right) / 2;
+
+            if (nums[left] <= nums[mid] && target <= nums[mid] && nums[left] <= target){
+                right = mid;// 右边界左移  第一种情况
+            }else if (nums[left] > nums[mid] && (target >= nums[left] || target <= nums[mid])){
+                right = mid;// 右边界左移  第二种情况
+            }else{
+                left = mid + 1;// 其余情况左边界右移
+            }
+        }
+        return (left == right && nums[left]==target) ? left : -1;
+        
+
+    }
+}
