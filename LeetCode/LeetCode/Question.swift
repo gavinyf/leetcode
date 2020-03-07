@@ -1143,7 +1143,9 @@ class QuestionTwentynine {
         return result + div(a - tb, b: b);
     }
 }
-
+/*
+ 串联所有单词的子串
+ */
 class QuestionThirty {
     func findSubstring(_ s: String, _ words: [String]) -> [Int] {
         var result = [Int]();
@@ -1189,6 +1191,31 @@ class QuestionThirty {
             
         }
         return result;
+
+    }
+}
+
+class QuestionThirtOne {
+    func nextPermutation(_ nums: inout [Int]) {
+        
+        if nums.count == 0 || nums.count == 1 {
+            return;
+        }
+        
+        var max = nums.count - 1;
+        while max > 0 {
+            let right = nums[max];
+            let left = nums[max - 1];
+            if right > left {
+                nums[max] = left;
+                nums[max-1] = right;
+                break;
+            }else if left > right{
+                nums = nums.reversed();
+            }
+            max -= 1;
+            
+        }
 
     }
 }
