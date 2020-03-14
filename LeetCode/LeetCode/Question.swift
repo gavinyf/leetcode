@@ -1361,3 +1361,24 @@ class QuestionThirtyfour {
         return nums[left-1] == target ? left-1 : -1;
     }
 }
+/*
+ 搜索插入位置
+ */
+class QuestionThirtyfive {
+    func searchInsert(_ nums: [Int], _ target: Int) -> Int {
+        var index = 0;
+        
+        while index < nums.count {
+            let num = nums[index];
+            if target < num {
+                return index;
+            }else if target == num{
+                return index;
+            }else{
+                index += 1;
+            }
+            
+        }
+        return index;
+    }
+}
