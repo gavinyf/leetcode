@@ -1295,3 +1295,69 @@ class QuestionThirtythree {
 
     }
 }
+
+/*
+ 在排序数组中查找元素的第一个和最后一个位置
+ 解题思路:
+ 分别找出target的左右边界
+ */
+
+class QuestionThirtyfour {
+    func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
+        var result = [-1,-1];
+        if result.isEmpty {
+            return result;
+        }
+        
+        let left = findLeftBinary(nums, target: target);
+        if left == -1 {
+            return result;
+        }
+        let right = findRightBinary(nums, target: target);
+        
+        result = [left,right];
+    
+        return result;
+
+    }
+    func findLeftBinary(_ nums:[Int],target:Int) -> Int {
+        var left = 0;
+        var right = nums.count;
+        while left < right {
+            let mid = (left+right)/2;
+            if nums[mid] == target {
+                right = mid;
+            }else if nums[mid] > target{
+                right = mid;
+            }else if nums[mid] < target{
+                left = mid+1;
+            }
+            
+        }
+        if left == nums.count {
+            return -1;
+        }
+        return nums[left] == target ? left : -1;
+    }
+    
+    func findRightBinary(_ nums:[Int], target:Int) -> Int {
+        
+        var left = 0;
+        var right = nums.count;
+        while left < right {
+            let mid = (left+right)/2;
+            if nums[mid] == target {
+                left = mid + 1;
+            }else if nums[mid] < target{
+                left = mid + 1;
+            }else if nums[mid] > target{
+                right = mid;
+            }
+            
+        }
+        if left == 0 {
+            return -1;
+        }
+        return nums[left-1] == target ? left-1 : -1;
+    }
+}
