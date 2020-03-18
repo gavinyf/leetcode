@@ -1449,3 +1449,40 @@ class QuestionThirtysix {
         }
     }
 }
+
+/*
+ 外观数列
+ */
+class QuestionThirtyEight {
+    func countAndSay(_ n: Int) -> String {
+        if n == 0 {
+            return "";
+        }
+        if n == 1 {
+           return "1";
+        }
+        
+        var s:[Character] = ["1","1"];
+        
+        var i = 2;
+        var temp = "";
+        while i < n {
+            var nums = 1;
+            temp = "";
+            for i in 1..<s.count {
+                if s[i] == s[i-1] {
+                    nums += 1;
+                }else{
+                    temp = temp + String(nums) + String(s[i-1]);
+                    nums = 1;
+                }
+            }
+            temp = temp + String(nums) + String(s[s.count-1]);
+            s = [Character](temp);
+            nums = 1;
+            i += 1;
+        }
+        
+        return String(s);
+    }
+}

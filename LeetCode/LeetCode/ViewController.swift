@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         
         
-        let result = QuestionThirtytwo().longestValidParentheses("()(())");
+        let result = QuestionThirtyEight().countAndSay(5);
         
         
     }
