@@ -20,9 +20,9 @@ class ViewController: UIViewController {
         
         
         
-        let result = QuestionThirtyEight().countAndSay(5);
+        let result = QuestionFourty().combinationSum2([10,1,2,7,6,1,5], 8);
         
-        
+    
     }
 
 
