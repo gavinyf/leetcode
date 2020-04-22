@@ -1568,3 +1568,31 @@ class QuestionFourtyOne {
     }
     
 }
+
+/*
+ 接雨水
+ */
+
+class QuestionFourtyTwo {
+    func trap(_ height: [Int]) -> Int {
+        
+        var res = 0;
+        var leftMax = 0;
+        var rightMax = 0;
+        var left = 0;
+        var right = height.count - 1;
+        
+        while left <= right {
+            if leftMax <= rightMax {
+                leftMax = max(leftMax, height[left]);
+                left += 1;
+                res += leftMax - height[left];
+            }else{
+                rightMax = max(rightMax, height[right]);
+                right -= 1;
+                res += rightMax - height[right];
+            }
+        }
+        return res;
+    }
+}
