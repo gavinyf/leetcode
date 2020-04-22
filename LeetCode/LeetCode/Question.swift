@@ -1596,3 +1596,42 @@ class QuestionFourtyTwo {
         return res;
     }
 }
+
+/*
+ 字符串相乘
+ */
+class QuestionFourtyThree {
+    func multiply(_ num1: String, _ num2: String) -> String {
+        
+        if num1 == "0" || num2 == "0" {
+            return "0";
+        }
+        
+        var res = Array(repeating: 0, count: num2.count + num1.count);
+        let array1:[Character] = [Character](num1).reversed();
+        let array2:[Character] = [Character](num2).reversed();
+        
+        for i in 0..<array1.count {
+            let a = Int(String(array1[i]))!;
+            if a == 0 {
+                continue;
+            }
+            for j in 0..<array2.count {
+                let b = Int(String(array2[j]))!;
+                
+                let sum = res[i + j] + a*b;
+                res[i+j] = sum%10;
+                res[i+j+1] += sum/10;
+                
+            }
+        
+        }
+        res = res.reversed();
+        if res.first! == 0 {
+            res.removeFirst();
+        }
+        let result = res.map(String.init).joined(separator: "")
+        
+        return result;
+    }
+}

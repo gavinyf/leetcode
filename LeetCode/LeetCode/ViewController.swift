@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         
         
-        let result = QuestionFourty().combinationSum2([10,1,2,7,6,1,5], 8);
+        let result = QuestionFourtyThree().multiply("123", "456");
         
     
     }
