@@ -1635,3 +1635,45 @@ class QuestionFourtyThree {
         return result;
     }
 }
+
+
+/*
+ 通配符匹配
+ */
+class QuestionFourtyFour {
+    func isMatch(_ s: String, _ p: String) -> Bool {
+        
+        let sChars = Array(s);
+        let pCharts = Array(p);
+        var dp = Array(repeating: Array(repeating: false, count: p.count + 1), count: s.count + 1)
+        
+        dp[0][0] = true;
+        
+        for i in 0...s.count {
+            for j in 0...p.count {
+                guard j > 0 else {
+                    continue
+                }
+                
+                let pCurrent = pCharts[j - 1];
+                if pCurrent != "*" {
+                    dp[i][j] = i > 0 && dp[i - 1][j - 1] && (pCurrent == sChars[i - 1] || pCurrent == "?")
+                }else{
+                    var flag = false
+                    for k in 0...i {
+                        if dp[k][j - 1] {
+                            flag = true
+                            break
+                        }
+                    }
+                    
+                    dp[i][j] = flag || j == 1
+                }
+                
+                
+            }
+        }
+
+        return dp[s.count][p.count];
+    }
+}
