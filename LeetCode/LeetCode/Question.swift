@@ -1683,7 +1683,7 @@ class QuestionFourtyFour {
  跳跃游戏2
  */
 
-class Solution {
+class QuestionFourtyFive {
     func jump(_ nums: [Int]) -> Int {
         
         var end = 0;
@@ -1703,3 +1703,39 @@ class Solution {
         
     }
 }
+
+/*
+ 全排列
+ */
+
+class QuestionFourtySix {
+    func permute(_ nums: [Int]) -> [[Int]] {
+        
+        var res = [[Int]]();
+        var path = [Int]();
+        var isVistited = [Bool](repeating: false, count: nums.count);
+        dfs(&res, &path, &isVistited, nums)
+        return res;
+    }
+    
+    private func dfs(_ res: inout [[Int]], _ path: inout [Int], _ isVisited: inout [Bool], _ nums:[Int]){
+        
+        guard path.count != nums.count else {
+            res.append(path);
+            return
+        }
+        
+        for (i, num) in nums.enumerated() where !isVisited[i] {
+            path.append(num);
+            isVisited[i] = true;
+            dfs(&res, &path, &isVisited, nums)
+            isVisited[i] = false;
+            path.removeLast();
+        }
+        
+        
+    }
+    
+}
+
+
