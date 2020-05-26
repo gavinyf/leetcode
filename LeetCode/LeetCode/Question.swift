@@ -1798,3 +1798,32 @@ class QuestionFourtyEight {
         
     }
 }
+
+/*
+ 字母异位词分组
+ */
+
+class QuestionFourtyNine {
+    func groupAnagrams(_ strs: [String]) -> [[String]] {
+        
+        var ans:[String:[String]] = [String:[String]]();
+        
+        for i in 0..<strs.count {
+            let chars = String(Array(strs[i]).sorted(by: <));
+            if !ans.keys.contains(chars) {
+                ans[chars] = [strs[i]];
+            }else{
+                ans[chars] = ans[chars]! + [strs[i]];
+            }
+        }
+        
+        var results:[[String]] = [[String]]();
+        
+        for item in ans.values {
+            results.append(item);
+        }
+        
+        return results;
+        
+    }
+}
