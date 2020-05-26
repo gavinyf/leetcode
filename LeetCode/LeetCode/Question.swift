@@ -1733,9 +1733,43 @@ class QuestionFourtySix {
             path.removeLast();
         }
         
-        
     }
     
 }
 
+/*
+ 全排列二
+ */
+
+class QuestionFourtySeven {
+    func permuteUnique(_ nums: [Int]) -> [[Int]] {
+        var res = [[Int]]();
+        var path = [Int]();
+        let nums = nums.sorted(by: <);
+        
+        var isVistited = [Bool](repeating: false, count: nums.count);
+        dfs(&res, &path, &isVistited, nums)
+        return res;
+    }
+    
+    private func dfs(_ res: inout [[Int]], _ path: inout [Int], _ isVisited: inout [Bool], _ nums:[Int]){
+           
+        guard path.count != nums.count else {
+            res.append(path);
+            return
+        }
+           
+        for i in 0..<nums.count {
+            if isVisited[i] || (i > 0 && nums[i] == nums[i - 1]) && isVisited[i - 1] {
+                continue;
+            }
+            path.append(nums[i]);
+            isVisited[i] = true;
+            dfs(&res, &path, &isVisited, nums);
+            isVisited[i] = false;
+            path.removeLast();
+        }
+           
+    }
+}
 

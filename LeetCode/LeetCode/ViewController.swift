@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         
         
-        let result = QuestionFourtyThree().multiply("123", "456");
+        let result = QuestionFourtySeven().permuteUnique([1,1,2]);
         
     
     }
