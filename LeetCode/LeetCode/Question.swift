@@ -1773,3 +1773,28 @@ class QuestionFourtySeven {
     }
 }
 
+/*
+ 旋转图像
+ */
+
+class QuestionFourtyEight {
+    func rotate(_ matrix: inout [[Int]]) {
+        
+        for i in 0..<matrix.count {
+            for j in i..<matrix.count {
+                let temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+        
+        for i in 0..<matrix.count {
+            for j in 0..<matrix.count/2 {
+                let temp = matrix[i][matrix.count - j - 1];
+                matrix[i][matrix.count - j - 1] = matrix[i][j];
+                matrix[i][j] = temp;
+            }
+        }
+        
+    }
+}
