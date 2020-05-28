@@ -1854,3 +1854,90 @@ class QuestionFifty {
         return res;
     }
 }
+
+/*
+ N皇后
+ */
+class QuestionFiftyOne {
+    
+    func solveNQueens(_ n: Int) -> [[String]] {
+        
+        guard n > 0 else {
+            return [[String]]();
+        }
+        
+        var boards = [[String]]()
+        var board = Array(repeating: "", count: n)
+        
+        
+        dfs(&boards, &board, n, 0);
+        
+        return boards;
+    }
+    
+    func dfs(_ boards: inout [[String]], _ board: inout [String], _ n: Int, _ row: Int) {
+        
+        if row == n {
+            boards.append(board);
+        }
+        
+        for col in 0..<n {
+            if isVaild(board, col, row) {
+                board[row] = setRow(col, n);
+                dfs(&boards, &board, n, row+1);
+            }
+            
+            
+        }
+        
+    }
+    
+    func isVaild(_ board:[String], _ col:Int, _ row:Int) ->Bool{
+        
+        var c = -1;
+        
+        for i in 0..<row {//找到每行对应的Q，
+            for j in 0..<board[0].count {
+                if chartAt(board[i], index: j) == "Q" {
+                    c = j;
+                    break;
+                }
+            }
+            
+            //检查列
+            if c == col {
+                return false;
+            }
+            
+            //检查对角线
+            if abs(c - col) == abs(row - i) {
+                return false;
+            }
+            
+        }
+        
+        
+        
+        return true;
+    }
+    
+    func chartAt(_ str:String, index:Int) -> Character {
+        return str[str.index(str.startIndex, offsetBy: index)]
+    }
+    
+    
+    func setRow(_ col: Int, _ n: Int) -> String {
+        var string = "";
+        
+        for i in 0..<n {
+            if i == col {
+                string.append("Q")
+            }else{
+                string.append(".")
+            }
+        }
+        return string;
+    }
+    
+    
+}

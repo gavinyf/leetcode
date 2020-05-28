@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         
         
-        let result = QuestionFourtySeven().permuteUnique([1,1,2]);
+        let result = QuestionFiftyOne().solveNQueens(4);
         
     
     }
