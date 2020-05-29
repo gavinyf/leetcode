@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         
         
-        let result = QuestionFiftyOne().solveNQueens(4);
+        let result = QuestionFiftyTwo().maxSubArray([-2,1]);
         
     
     }

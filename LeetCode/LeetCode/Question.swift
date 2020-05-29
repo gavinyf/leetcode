@@ -1941,3 +1941,28 @@ class QuestionFiftyOne {
     
     
 }
+
+/*
+ 最大子序和
+ */
+class QuestionFiftyTwo {
+    func maxSubArray(_ nums: [Int]) -> Int {
+      
+        guard nums.count > 0 else {
+            return 0;
+        }
+        var maxs = nums.first!;
+        
+        var sum = 0;
+        for num in nums {
+            if sum > 0 {
+                sum += num;
+            }else{
+                sum = num;
+            }
+            maxs = max(maxs, sum);
+        }
+        return maxs;
+    }
+    
+}
