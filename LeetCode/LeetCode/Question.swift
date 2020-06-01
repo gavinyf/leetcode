@@ -1942,10 +1942,87 @@ class QuestionFiftyOne {
     
 }
 
+
+
+/*
+  N皇后二
+ */
+
+class QuestionFiftyTwo {
+    func totalNQueens(_ n: Int) -> Int {
+        guard n > 0 else {
+            return 0;
+        }
+        
+        var boards = [[String]]();
+        var board = Array(repeating: "", count: n);
+        dfs(&boards, &board, n: n, row: 0)
+        return boards.count;
+    }
+    
+    func dfs(_ boards:inout [[String]], _ board: inout [String], n:Int, row: Int ) {
+        
+        if row == n {
+            boards.append(board);
+            return;
+        }
+        
+        
+        for col in 0..<n {
+            if isVaild(board, col: col, row: row) {
+                board[row] = setRow(col, n);
+                dfs(&boards, &board, n: n, row: row+1);
+            }
+        }
+        
+    }
+    
+    func isVaild(_ board:[String], col:Int, row:Int) -> Bool {
+        
+        var c = -1;
+        
+        
+        for i in 0..<row {
+            for j in 0..<board[0].count {
+                if charAt(board[i], j) == "Q" {
+                    c = j;
+                    break;
+                }
+            }
+            
+            if c == col {
+                return false;
+            }
+            
+            if abs(col - c) == abs(row - i) {
+                return false;
+            }
+            
+        }
+        return true;
+    }
+    
+    func charAt(_ str:String,_ index:Int) -> Character {
+        return str[str.index(str.startIndex, offsetBy: index)];
+    }
+    
+    func setRow(_ col:Int, _ n: Int) -> String {
+        var str = "";
+        for i in 0..<n {
+            if i == col {
+                str.append("Q");
+            }else{
+                str.append(".");
+            }
+        }
+        return str;
+    }
+}
+
 /*
  最大子序和
  */
-class QuestionFiftyTwo {
+class QuestionFiftyThree {
     func maxSubArray(_ nums: [Int]) -> Int {
       
         guard nums.count > 0 else {
