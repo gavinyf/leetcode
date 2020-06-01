@@ -2043,3 +2043,46 @@ class QuestionFiftyThree {
     }
     
 }
+
+
+/*
+ 螺旋矩阵
+ */
+
+class QuestionFiftyFour {
+    func spiralOrder(_ matrix: [[Int]]) -> [Int] {
+        
+        guard matrix.count > 0 else {
+            return [Int]();
+        }
+        let cCount = matrix.first!.count
+        let rCount = matrix.count;
+        
+        var r = 0, c = 0;
+        
+        
+        var results = [Int]();
+        var seen = Array(repeating: Array(repeating: false, count: cCount), count: rCount);
+        let stepC = [1,0,-1,0];
+        let stepR = [0,1,0,-1];
+        var dr = 0;
+        
+        for _ in 0..<cCount*rCount {
+            results.append(matrix[r][c])
+            seen[r][c] = true;
+            let sR = r + stepR[dr];
+            let sC = c + stepC[dr];
+            if 0 <= sR && sR < rCount && 0 <= sC && sC < cCount && !seen[sR][sC] {
+                r = sR;
+                c = sC;
+            }else{
+                dr = (dr+1)%4;
+                r += stepR[dr];
+                c += stepC[dr];
+            }
+        }
+        
+        return results;
+    }
+    
+}
