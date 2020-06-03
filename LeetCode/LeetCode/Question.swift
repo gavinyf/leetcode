@@ -2086,3 +2086,41 @@ class QuestionFiftyFour {
     }
     
 }
+
+
+/*
+ 合并区间
+ */
+
+class QuestionFiftyFive {
+    func merge(_ intervals: [[Int]]) -> [[Int]] {
+        
+        let nums = intervals.sorted { (obj1, obj2) -> Bool in
+            if obj1.first! != obj2.first!{
+                return obj1.first! < obj2.first!;
+            }else{
+                return obj1.last! < obj2.last!;
+            }
+        }
+        
+        var results = [[Int]]();
+        
+       
+        
+        for interval in nums {
+            
+            if results.isEmpty || results.last![1] < interval[0] {
+                results.append(interval)
+            }else{
+                var last = results.last!
+                
+                last[1] = max(last[1], interval[1])
+                results.removeLast();
+                results.append(last);
+            }
+            
+        }
+        
+        return results;
+    }
+}
