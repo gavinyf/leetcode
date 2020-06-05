@@ -2087,12 +2087,29 @@ class QuestionFiftyFour {
     
 }
 
+/*
+ 跳跃游戏
+ */
+
+class QuestionFiftyFive {
+    func canJump(_ nums: [Int]) -> Bool {
+        
+        var current = 0;
+        for i in 0..<nums.count {
+            if i > current {
+                return false;
+            }
+            current = max(current, i + nums[i])
+        }
+        return true
+    }
+}
 
 /*
  合并区间
  */
 
-class QuestionFiftyFive {
+class QuestionFiftySix {
     func merge(_ intervals: [[Int]]) -> [[Int]] {
         
         let nums = intervals.sorted { (obj1, obj2) -> Bool in
