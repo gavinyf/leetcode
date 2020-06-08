@@ -2201,3 +2201,85 @@ class QuestionFiftyEight {
     }
     
 }
+
+
+/*
+ 螺旋矩阵 II
+ */
+class QuestionFiftyNine {
+    
+    func generateMatrix(_ n: Int) -> [[Int]] {
+        
+        guard n > 0 else {
+            return [[Int]]();
+        }
+        var results = Array(repeating: Array(repeating: 0, count: n), count: n);
+        
+        let count = n*n;
+        
+        var row = 0;
+        var col = 0;
+        let rowS = [0,1,0,-1];
+        let colS = [1,0,-1,0];
+        var dr = 0;
+        
+        for i in 0..<count {
+            if results[row][col] == 0 {
+                results[row][col] = i+1;
+            }
+            
+            let sR = row + rowS[dr];
+            let sC = col + colS[dr];
+            if  sR < n && sC < n && sR >= 0 && sC >= 0 && results[sR][sC] == 0{
+                row = sR;
+                col = sC;
+            }else{
+                dr = (dr + 1)%4;
+                row += rowS[dr];
+                col += colS[dr];
+            }
+            
+        }
+        
+        return results;
+    }
+    
+}
+
+/*
+ 第k个排列 
+ */
+
+class QuestionSixty {
+    func getPermutation(_ n: Int, _ k: Int) -> String {
+        
+        var numbers = [1,2,3,4,5,6,7,8,9];
+        var factorial = 1;
+        for i in 1..<n {
+            factorial *= i;
+        }
+        
+        var result = "";
+        var k = k;
+        var divisor = n-1;
+        
+        for _ in 0..<n {
+            for (index,number) in numbers.enumerated() {
+                if k > factorial {
+                    k -= factorial;
+                }else{
+                    result += "\(number)";
+                    numbers.remove(at: index);
+                    break;
+                }
+            }
+            if divisor > 1 {
+                factorial /= divisor;
+                divisor -= 1;
+            }
+        }
+        
+        return result;
+    }
+    
+}

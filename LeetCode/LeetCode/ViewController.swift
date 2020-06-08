@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         
         
-        let result = QuestionFiftyEight().lengthOfLastWord("Hello wor");
+        let result = QuestionSixty().getPermutation(9, 24);
         
     
     }
