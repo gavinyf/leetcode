@@ -2121,9 +2121,7 @@ class QuestionFiftySix {
         }
         
         var results = [[Int]]();
-        
-       
-        
+                
         for interval in nums {
             
             if results.isEmpty || results.last![1] < interval[0] {
@@ -2138,6 +2136,41 @@ class QuestionFiftySix {
             
         }
         
+        return results;
+    }
+}
+
+/*
+ 插入区间
+ */
+class QuestionFiftySeven {
+    func insert(_ intervals: [[Int]], _ newInterval: [Int]) -> [[Int]] {
+        
+        if intervals.count == 0 {
+            return [newInterval];
+        }
+        var newInterval = newInterval;
+        
+        var results = [[Int]]();
+        
+        var index = 0;
+        
+        while index < intervals.count && newInterval.first! > intervals[index].last! {
+            results.append(intervals[index]);
+            index += 1;
+        }
+        
+        while index < intervals.count && newInterval.last! >= intervals[index].first! {
+            let minStart = min(newInterval.first!, intervals[index].first!);
+            let maxEnd = max(newInterval.last!, intervals[index].last!);
+            newInterval[0] = minStart;
+            newInterval[1] = maxEnd;
+            index += 1;
+        }
+        results.append(newInterval);
+        for i in index..<intervals.count {
+            results.append(intervals[i])
+        }
         return results;
     }
 }
