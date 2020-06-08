@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         
         
-        let result = QuestionFiftyThree().maxSubArray([-2,1]);
+        let result = QuestionFiftyEight().lengthOfLastWord("Hello wor");
         
     
     }

@@ -2174,3 +2174,30 @@ class QuestionFiftySeven {
         return results;
     }
 }
+
+/*
+ 最后一个单词的长度
+ */
+
+class QuestionFiftyEight {
+    func lengthOfLastWord(_ s: String) -> Int {
+                
+        var index = 0;
+        var reversedWord = [Character](String(s.reversed()));
+        
+        while reversedWord.count > 0 && reversedWord.first! == " " {
+            reversedWord.removeFirst();
+        }
+        
+        for c in reversedWord {
+            if c == " " {
+                break;
+            }else{
+                index += 1;
+            }
+        }
+        
+        return index;
+    }
+    
+}
