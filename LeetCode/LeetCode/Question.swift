@@ -2247,7 +2247,7 @@ class QuestionFiftyNine {
 }
 
 /*
- 第k个排列 
+ 第k个排列
  */
 
 class QuestionSixty {
@@ -2280,6 +2280,52 @@ class QuestionSixty {
         }
         
         return result;
+    }
+    
+}
+
+/*
+ 旋转链表
+ */
+class QuestionSixtyOne {
+    func rotateRight(_ head: ListNode?, _ k: Int) -> ListNode? {
+                
+        if head == nil {
+            return head
+        }
+        
+        var prev = head
+        var post = head
+        let len = _getLength(head: head)
+        var k = k % len
+            
+        while k > 0 {
+            post = post!.next
+            k -= 1
+        }
+            
+        while post!.next != nil {
+            prev = prev!.next
+            post = post!.next
+        }
+            
+        post!.next = head
+        post = prev!.next
+        prev!.next = nil
+            
+        return post
+    }
+    
+    private func _getLength(head: ListNode?) -> Int {
+        var len = 0
+        var node = head
+        
+        while node != nil {
+            len += 1
+            node = node!.next
+        }
+        
+        return len
     }
     
 }
