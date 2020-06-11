@@ -2358,3 +2358,43 @@ class QuestionSixtyTwo {
     }
     
 }
+
+/*
+ 不同路径2
+ */
+
+class QuestionSixtyThree {
+    func uniquePathsWithObstacles(_ obstacleGrid: [[Int]]) -> Int {
+        
+        if obstacleGrid.count == 0 {
+            return 0;
+        }
+        
+        let row = obstacleGrid.count;
+        let col = obstacleGrid[0].count;
+        
+        
+        guard obstacleGrid[0][0] == 0 else {
+            return 0;
+        }
+        
+        var obstacleGrid = obstacleGrid;
+        obstacleGrid[0][0] = 1;
+        
+        for i in 1..<row {
+            obstacleGrid[i][0] = obstacleGrid[i][0] == 1 ? 0 : obstacleGrid[i-1][0];
+        }
+        
+        for j in 1..<col {
+            obstacleGrid[0][j] = obstacleGrid[0][j] == 1 ? 0 : obstacleGrid[0][j-1];
+        }
+        
+        for i in 1..<row {
+            for j in 1..<col {
+                obstacleGrid[i][j] = obstacleGrid[i][j] == 1 ? 0 : obstacleGrid[i-1][j] + obstacleGrid[i][j-1];
+            }
+        }
+        return obstacleGrid[row-1][col-1];
+    }
+    
+}
