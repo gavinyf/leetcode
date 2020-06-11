@@ -19,18 +19,8 @@ class ViewController: UIViewController {
         
         
         
-        let one = ListNode(1);
-        let two = ListNode(2);
-        let three = ListNode(3);
-        let four = ListNode(4);
-        let five = ListNode(5);
-        let six = ListNode(6);
-        one.next = two;
-        two.next = three;
-        three.next = four;
-        four.next = five;
-//        five.next = six
-        let result = QuestionSixtyOne().rotateRight(one, 2);
+        
+        let result = QuestionSixtyFour().minPathSum([[1,3,1],[1,5,1],[4,2,1]]);
         
     
     }

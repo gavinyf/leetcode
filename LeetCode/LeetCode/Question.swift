@@ -2398,3 +2398,37 @@ class QuestionSixtyThree {
     }
     
 }
+
+/*
+ 最小路径之和
+ */
+
+class QuestionSixtyFour {
+    func minPathSum(_ grid: [[Int]]) -> Int {
+        
+        guard grid.count != 0 else {
+            return 0;
+        }
+        let row = grid.count;
+        let col = grid[0].count;
+        
+        var dp = Array(repeating: Array(repeating: 0, count: col), count: row);
+        
+        dp[0][0] = grid[0][0];
+        for i in 1..<row {
+            dp[i][0] = dp[i-1][0] + grid[i][0];
+        }
+        
+        for j in 1..<col {
+            dp[0][j] = dp[0][j-1] + grid[0][j];
+        }
+        
+        for i in 1..<row {
+            for j in 1..<col {
+                dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j];
+            }
+        }
+        return dp[row-1][col-1];
+        
+    }
+}
