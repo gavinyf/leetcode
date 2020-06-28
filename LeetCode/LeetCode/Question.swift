@@ -2480,3 +2480,25 @@ class QuestionSixtySeven {
         return res;
     }
 }
+
+
+/*
+ x的平方根
+ */
+
+class QuestionSixtyNine {
+    func mySqrt(_ x: Int) -> Int {
+        
+        guard x > 0 else {
+            return 0;
+        }
+        var result = 1;
+        while result*result < x {
+            result += 1;
+        }
+        if result*result > x {
+            result -= 1;
+        }
+        return result;
+    }
+}
