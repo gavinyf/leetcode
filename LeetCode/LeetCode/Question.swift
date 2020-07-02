@@ -2502,3 +2502,51 @@ class QuestionSixtyNine {
         return result;
     }
 }
+
+/*
+ 爬楼梯
+ */
+
+class QuestionSeventy {
+    
+    func climbStairs(_ n: Int) -> Int {
+        if n == 1 || n == 0 {
+            return n;
+        }
+        var nums = Array(repeating: 0, count: n+1);
+        nums[1] = 1;
+        nums[2] = 2;
+        
+        for i in 3..<n+1 {
+            nums[i] = nums[i-1] + nums[i-2];
+        }
+        return nums[n];
+    }
+   
+}
+
+
+/*
+  简化路径
+ */
+
+class QuestionSeventyOne {
+    func simplifyPath(_ path: String) -> String {
+        var pathList = [String]();
+        
+        let paths = path.components(separatedBy: "/");
+        for str in paths {
+            if str == ".." {
+                if !pathList.isEmpty {
+                    pathList.removeLast();
+                }
+            }else if !str.isEmpty && str != "."{
+                pathList.append(str);
+            }
+        }
+        if pathList.isEmpty {
+            return "/";
+        }
+        return "/".appending(pathList.joined(separator: "/"));
+    }
+}

@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         
         
-        let result = QuestionSixtyFour().minPathSum([[1,3,1],[1,5,1],[4,2,1]]);
+        let result = QuestionSeventyOne().simplifyPath("/home/");
         
     
     }
