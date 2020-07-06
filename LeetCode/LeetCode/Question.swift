@@ -2550,3 +2550,38 @@ class QuestionSeventyOne {
         return "/".appending(pathList.joined(separator: "/"));
     }
 }
+
+/*
+ 编辑距离
+ */
+
+class QuestionSeventyTwo {
+    func minDistance(_ word1: String, _ word2: String) -> Int {
+        let words1 = [Character](word1)
+        let words2 = [Character](word2);
+        
+        
+        let count1 = word1.count;
+        let count2 = word2.count;
+        var dp = Array(repeating: Array(repeating: 0, count: count2+1), count: count1+1);
+        for i in 0..<count1+1 {
+            dp[i][0] = i;
+        }
+        
+        for j in 0..<count2+1 {
+            dp[0][j] = j;
+        }
+        
+        for i in 1..<dp.count {
+            for j in 1..<dp[i].count {
+                dp[i][j] = min(min(dp[i-1][j-1], dp[i-1][j]), dp[i][j-1]) + 1;
+                if words1[i - 1] == words2[j-1] {
+                    dp[i][j] = dp[i-1][j-1];
+                }
+            }
+        }
+        
+        return dp[count1][count2];
+        
+    }
+}
