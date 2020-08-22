@@ -2585,3 +2585,79 @@ class QuestionSeventyTwo {
         
     }
 }
+
+/*
+ 矩阵置零
+ */
+
+class QuestionSeventyThree {
+    func setZeroes(_ matrix: inout [[Int]]) {
+        var lines = [Int]();
+        var vert = [Int]();
+        
+        for i in 0..<matrix.count {
+            for j in 0..<matrix[0].count {
+                if matrix[i][j] == 0 {
+                    lines.append(i);
+                    vert.append(j);
+                }
+            }
+        }
+        for i in 0..<matrix.count {
+            if lines.contains(i) {
+                for j in 0..<matrix[i].count {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        
+        for j in 0..<matrix[0].count {
+            if vert.contains(j) {
+                for i in 0..<matrix.count {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        
+    }
+}
+
+/*
+ 搜索二维矩阵
+ */
+
+class QuestionSeventyFour {
+    func searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
+        
+        let m = matrix.count;
+        if m == 0 {
+            return false;
+        }
+        
+        let n = matrix.first!.count;
+        if n == 0 {
+            return false;
+        }
+        
+        var left = 0;
+        var right = m*n - 1;
+        
+        var index = 0;
+        var element = 0;
+        
+        
+        while left <= right {
+            index = (left + right)/2;
+            element = matrix[index/n][index%n];
+            if target == element {
+                return true
+            }else if target < element {
+                right = index - 1;
+            }else{
+                left = index + 1;
+            }
+        }
+        
+        return false;
+    }
+}
