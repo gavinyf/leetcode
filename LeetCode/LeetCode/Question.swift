@@ -2661,3 +2661,45 @@ class QuestionSeventyFour {
         return false;
     }
 }
+
+
+/**
+ 颜色分类
+ */
+class QuestionSeventyFive {
+    func sortColors(_ nums: inout [Int]) {
+        
+        var p0 = 0;
+        var index = 0;
+        var p2 = nums.count - 1;
+        
+        var temp = 0;
+        var current = 0;
+        
+        while index <= p2 {
+            
+            current = nums[index];
+            if current == 0 {
+                temp = current;
+                nums[index] = nums[p0];
+                nums[p0] = current;
+                p0 += 1;
+                index += 1;
+            }else if current == 2{
+                temp = current;
+                nums[index] = nums[p2];
+                nums[p2] = current;
+                p2 -= 1;
+                
+            }else{
+                index += 1;
+            }
+            
+        }
+        
+        
+        
+           
+    }
+    
+}
