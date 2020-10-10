@@ -2703,3 +2703,74 @@ class QuestionSeventyFive {
     }
     
 }
+
+/**
+ 最小覆盖子串
+ */
+
+class QuestionSeventySix {
+    func minWindow(_ s: String, _ t: String) -> String {
+        
+        var result = "";
+        
+        guard s.count >= t.count else {
+            return "";
+        }
+        
+        var first = 0;
+        var second = t.count - 1;
+        
+        
+        while first < second && second < s.count {
+            
+            let startIndex = s.index(s.startIndex, offsetBy: first);
+            let endIndex = s.index(s.startIndex, offsetBy: second);
+            let range = startIndex..<endIndex;
+            
+            var filteString = String(s[range]);
+            
+            if checkString(filteString, s) {
+                
+            }
+            
+        }
+        
+        return result;
+    }
+    
+    
+    func checkString(_ originString:String, _ filterString:String) -> Bool {
+        
+        return false;
+    }
+}
+
+
+/**
+ 组合
+ */
+
+class QuestionSeventySeven {
+    func combine(n: Int, _ k: Int) -> [[Int]] {
+        var res = [[Int]]()
+        var path = [Int]()
+        let nums = [Int](1...n)
+        
+        _dfs(nums, &res, &path, 0, k)
+        
+        return res
+    }
+    
+     func _dfs(nums: [Int], _ res: inout [[Int]], _ path: inout [Int], _ index: Int, _ k: Int) {
+        if path.count == k {
+            res.append([Int](path))
+            return
+        }
+        
+        for i in index..<nums.count {
+            path.append(nums[i])
+            _dfs(nums, &res, &path, i + 1, k)
+            path.removeLast()
+        }
+    }
+}
