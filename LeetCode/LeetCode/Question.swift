@@ -2749,27 +2749,60 @@ class QuestionSeventySix {
 /**
  组合
  */
-
 class QuestionSeventySeven {
     func combine(n: Int, _ k: Int) -> [[Int]] {
         var res = [[Int]]()
         var path = [Int]()
         let nums = [Int](1...n)
         
-        _dfs(nums, &res, &path, 0, k)
+        dfs(nums: nums, &res, &path, 0, k);
         
         return res
     }
     
-     func _dfs(nums: [Int], _ res: inout [[Int]], _ path: inout [Int], _ index: Int, _ k: Int) {
+     
+    
+    func dfs(nums:[Int], _ res: inout [[Int]], _ path: inout [Int], _ index: Int, _ k :Int) {
         if path.count == k {
-            res.append([Int](path))
-            return
+            res.append(path);
+            return;
         }
+        
+        for i in index ..< nums.count {
+            path.append(nums[i]);
+            dfs(nums: nums, &res, &path, i+1, k)
+            path.removeLast();
+        }
+        
+    }
+    
+}
+
+/**
+ 子集
+ */
+
+class QuestionSeventyEight {
+    func subsets(_ nums: [Int]) -> [[Int]] {
+        var res = [[Int]]()
+        var path = [Int]()
+        
+        let nums = nums.sorted(by: <)
+        
+        _dfs(res: &res, &path, nums, 0)
+        
+        return res
+            
+    }
+    
+    private func _dfs( res: inout [[Int]], _ path: inout [Int], _ nums: [Int], _ index: Int) {
+        // termination case
+
+        res.append(path)
         
         for i in index..<nums.count {
             path.append(nums[i])
-            _dfs(nums, &res, &path, i + 1, k)
+            _dfs(res: &res,&path, nums, i + 1);
             path.removeLast()
         }
     }
