@@ -2756,7 +2756,6 @@ class QuestionSeventySeven {
         let nums = [Int](1...n)
         
         dfs(nums: nums, &res, &path, 0, k);
-        
         return res
     }
     
@@ -2806,4 +2805,61 @@ class QuestionSeventyEight {
             path.removeLast()
         }
     }
+}
+
+/**
+ 单词搜索
+ */
+
+class QuestionSeventyNine {
+    func exist(_ board: [[Character]], _ word: String) -> Bool {
+        
+        guard board.count > 0 && board[0].count > 0 else {
+            return false;
+        }
+        
+        let m = board.count;
+        let n = board[0].count;
+        
+        var visited = Array(repeating: Array(repeating: false, count: n), count: m);
+        var wordContent = [Character]()
+        
+        
+        for i in 0..<m {
+            for j in 0..<n {
+                
+                if board[i][j] == wordContent[0] && _dfs(board:board, wordContent, m, n, i, j, &visited, 0) {
+                    return true
+                }
+                
+            }
+        }
+        
+        return true;
+    }
+    
+    private func _dfs(board: [[Character]], _ wordContent: [Character], _ m: Int, _ n: Int, _ i: Int, _ j: Int, _ visited: inout [[Bool]], _ index: Int) -> Bool {
+        if index == wordContent.count {
+            return true
+        }
+    
+        guard i >= 0 && i < m && j >= 0 && j < n else {
+            return false
+        }
+        guard !visited[i][j] && board[i][j] == wordContent[index] else {
+            return false
+        }
+        
+        visited[i][j] = true
+        
+        if _dfs(board:board, wordContent, m, n, i + 1, j, &visited, index + 1) || _dfs(board:board, wordContent, m, n, i - 1, j, &visited, index + 1) || _dfs(board:board, wordContent, m, n, i, j + 1, &visited, index + 1) || _dfs(board:board, wordContent, m, n, i, j - 1, &visited, index + 1) {
+            return true
+        }
+        visited[i][j] = false
+        
+        return false
+    }
+    
+    
+    
 }
