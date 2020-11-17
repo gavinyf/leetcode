@@ -2822,7 +2822,7 @@ class QuestionSeventyNine {
         let n = board[0].count;
         
         var visited = Array(repeating: Array(repeating: false, count: n), count: m);
-        var wordContent = [Character]()
+        let wordContent = [Character]()
         
         
         for i in 0..<m {
@@ -2859,7 +2859,71 @@ class QuestionSeventyNine {
         
         return false
     }
-    
-    
-    
+
+}
+
+/**
+ 删除排序数组中的重复项II
+ */
+
+class QuestionEighty {
+    func removeDuplicates(_ nums: inout [Int]) -> Int {
+        
+        guard nums.count > 2 else {
+            return nums.count
+        }
+        
+        var index = 1
+        
+        for i in 2..<nums.count {
+            if nums[index] != nums[index - 1] || nums[index] != nums[i] {
+                index += 1
+                nums[index] = nums[i]
+            }
+        }
+        
+        return index + 1
+        
+    }
+}
+
+/**
+ 搜索旋转排序数组 II
+ */
+
+class QuestionEightyOne {
+    func search(_ nums: [Int], _ target: Int) -> Bool {
+        var left = 0;
+        var right = nums.count - 1;
+        var mid = 0;
+        
+        while left <= right {
+            
+            mid = (right - left)/2 + left;
+            
+            if nums[mid] == target {
+                return true;
+            }
+            
+            if nums[mid] > nums[left] {
+                
+                if nums[mid] > target && target >= nums[left] {
+                    right = mid - 1;
+                }else {
+                    left = mid + 1;
+                }
+            }else if nums[mid] < nums[left]{
+                if nums[mid] < target && target <= nums[right] {
+                    left = mid + 1
+                } else {
+                    right = mid - 1
+                }
+                
+            }else{
+                left += 1;
+            }
+            
+        }
+        return false;
+    }
 }

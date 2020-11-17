@@ -19,8 +19,9 @@ class ViewController: UIViewController {
         
         
         
+        var nums = [0,0,1,1,1,1,2,3,3];
         
-        let result = QuestionSeventyFour().searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,50]], 3);
+        let result = QuestionEighty().removeDuplicates(&nums);
         
     
     }
