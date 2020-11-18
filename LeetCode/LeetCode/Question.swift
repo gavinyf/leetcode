@@ -2927,3 +2927,60 @@ class QuestionEightyOne {
         return false;
     }
 }
+
+
+/**
+ 删除排序链表中的重复元素 II
+ */
+
+class QuestionEightyTwo {
+    func deleteDuplicates(_ head: ListNode?) -> ListNode? {
+        
+        if head == nil || head?.next == nil {
+            return head;
+        }
+        
+        let dummy = ListNode(0);
+        dummy.next = head;
+        
+        var node = dummy;
+        
+        while node.next != nil && node.next!.next != nil {
+            
+            if node.next!.val == node.next!.next!.val {
+                let val = node.next!.val;
+                while node.next != nil && node.next!.val == val {
+                    node.next = node.next!.next;
+                }
+            }else{
+                node = node.next!;
+            }
+            
+        }
+        return dummy.next;
+    }
+}
+
+/**
+ 删除排序链表中的重复元素
+ */
+
+class QuestionEightyThree {
+    func deleteDuplicates(_ head: ListNode?) -> ListNode? {
+            
+        guard let head = head else {
+            return nil;
+        }
+        
+        var curt = head;
+        
+        while curt.next != nil {
+            if curt.next!.val == curt.val {
+                curt.next = curt.next!.next;
+            }else{
+                curt = curt.next!;
+            }
+        }
+        return head;
+    }
+}
