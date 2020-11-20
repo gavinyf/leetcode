@@ -2984,3 +2984,34 @@ class QuestionEightyThree {
         return head;
     }
 }
+
+/**
+ 柱状图中最大的矩形
+ */
+
+class QuestionEightyFour {
+    func largestRectangleArea(_ heights: [Int]) -> Int {
+        
+        guard heights.count > 0 else {
+            return 0;
+        }
+        
+        let count = heights.count;
+        
+        var result = 0;
+        
+        for left in 0..<count {
+            
+            var minHeight = Int.max;
+            
+            for right in left..<count {
+                
+                minHeight = min(minHeight, heights[right]);
+                result = max(result, minHeight*(right - left + 1));
+                
+            }
+            
+        }
+        return result;
+    }
+}
