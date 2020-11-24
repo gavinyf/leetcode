@@ -3015,3 +3015,54 @@ class QuestionEightyFour {
         return result;
     }
 }
+
+/**
+ 最大矩形
+ */
+
+class QuestionEightyFive {
+    func maximalRectangle(_ matrix: [[Character]]) -> Int {
+        let m = matrix.count
+        if m == 0 {
+            return 0
+        }
+                let n = matrix[m-1].count
+                if n == 0 {
+                    return 0
+                }
+                let d: [Character:Int] = ["0":0, "1":1]
+                var nmtx = Array(repeating: Array(repeating: 0, count: n), count: m)
+                for (i, g) in matrix.enumerated() {
+                    for (j, c) in g.enumerated() {
+                        if i == 0 {
+                            nmtx[i][j] = d[c]!
+                        }else{
+                            if d[c]! == 0 {
+                                nmtx[i][j] = 0
+                            }else{
+                                nmtx[i][j] = nmtx[i-1][j] + 1
+                            }
+                            
+                        }
+                    }
+                }
+                var res = 0
+                var stack = [Int]()
+                for g in nmtx {
+                    for i in 0...g.count {
+                        let cur = i == g.count ? -1 : g[i]
+                        while stack.count > 0 && cur < g[stack.first!] {
+                            let top = stack.first!
+                            stack.removeFirst()
+                            res = max(res, g[top]*(stack.count==0 ? i : i - stack.first! - 1))
+                        }
+                        stack.insert(i, at: 0)
+                    }
+                    
+                    stack.removeAll()
+                    
+                }
+                return res
+
+    }
+}
