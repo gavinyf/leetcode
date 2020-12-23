@@ -3066,3 +3066,35 @@ class QuestionEightyFive {
 
     }
 }
+
+/**
+ 分隔链表
+ */
+
+class QuestionEightySix {
+    
+    func partition(_ head: ListNode?, _ x: Int) -> ListNode? {
+        let prevDummy = ListNode(0),postDummy = ListNode(0)
+        var prev = prevDummy, post = postDummy;
+        
+        var node = head;
+        
+        while node != nil {
+            let next = node!.next;
+            node?.next = nil;
+            
+            if node!.val < x {
+                prev.next = node;
+                prev = prev.next!
+            }else{
+                post.next = node;
+                post = post.next!;
+            }
+            node = next;
+        }
+        
+        prev.next = postDummy.next;
+        return prevDummy.next;
+    }
+    
+}
