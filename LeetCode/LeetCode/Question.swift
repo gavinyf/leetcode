@@ -3132,3 +3132,17 @@ class QuestionEightyEight {
         
     }
 }
+
+/**
+ 格雷编码
+ */
+class QuestionEightyNine {
+    func grayCode(_ n: Int) -> [Int] {
+        var codes = [0]
+        for i in 0..<n {
+            codes += codes.reversed().map { $0 | 1 << i }
+        }
+        return codes
+    }
+}
+
