@@ -3146,3 +3146,32 @@ class QuestionEightyNine {
     }
 }
 
+
+/**
+ 子集
+ */
+
+class QuestionNinety {
+    func subsetsWithDup(nums: [Int]) -> [[Int]] {
+        var res = [[Int]](), path = [Int]()
+        
+        let nums = nums.sorted(by: <)
+        
+        _dfs(res: &res, &path, nums, 0);
+        return res
+    }
+    
+    private func _dfs( res: inout [[Int]], _ path:inout [Int], _ nums: [Int], _ index: Int) {
+        res.append(path)
+        
+        for i in index..<nums.count {
+            if i > 0 && nums[i] == nums[i - 1] && i != index {
+                continue
+            }
+            
+            path.append(nums[i])
+            _dfs(res: &res, &path, nums, i+1);
+            path.removeLast()
+        }
+    }
+}
